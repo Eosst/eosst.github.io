@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohammed Mimouni — Full-stack & mobile engineer</title>
+<meta name="description" content="Full-stack and mobile engineer. I build complete web and mobile apps: backend, frontend, payments and deployment. Django, Spring Boot, React and Flutter.">
+<script>
+// Apply a saved dark choice before first paint, so the page never flashes white.
+try { if (localStorage.getItem('theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (e) {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Light by default whatever the system says; the toggle sets data-theme="dark". */
+:root{
+  color-scheme:light;
+  --bg:#F4F6FA; --surface:#FFFFFF; --ink:#0E1525; --muted:#5B6475; --line:#E3E7EE;
+  --blue:#2340FF; --blue-ink:#FFFFFF; --blue-soft:#E9EDFF; --blue-text:#2340FF;
+  --band:#0C1636; --band-ink:#FFFFFF; --band-muted:#A9B3D1; --band-line:rgba(255,255,255,.14);
+  --chip:#EEF1F6; --shadow:0 1px 2px rgba(14,21,37,.04),0 10px 30px rgba(14,21,37,.07);
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0B0E14; --surface:#131823; --ink:#EEF1F6; --muted:#98A1B2; --line:#232A38;
+  --blue:#6E84FF; --blue-ink:#0B0E14; --blue-soft:#1B2348; --blue-text:#93A3FF;
+  --band:#111A3A; --band-ink:#FFFFFF; --band-muted:#A9B3D1; --band-line:rgba(255,255,255,.12);
+  --chip:#1A2030; --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Figtree,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+h1,h2,h3,h4,.fig{font-family:"Bricolage Grotesque",system-ui,sans-serif;letter-spacing:-.02em;margin:0}
+.eyebrow{font-size:14px;font-weight:600;color:var(--blue-text)}
+.muted{color:var(--muted)}
+
+/* buttons & pills */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;border:1.5px solid transparent;transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.primary{background:var(--blue);color:var(--blue-ink)}
+.btn.light{background:#fff;color:#0C1636}
+.btn.ghost{border-color:var(--band-line);color:var(--band-ink)}
+.btn.ghost:hover{background:rgba(255,255,255,.08)}
+.btn.outline{border-color:var(--line);background:var(--surface)}
+.pill{display:inline-flex;align-items:center;padding:5px 12px;border-radius:999px;background:var(--chip);font-size:13px;font-weight:500;color:var(--muted)}
+
+/* hero band */
+.band{background:var(--band);color:var(--band-ink);border-radius:0 0 32px 32px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
+.me{font-family:"Bricolage Grotesque";font-weight:700;font-size:20px;display:flex;align-items:center;gap:10px}
+.me i{width:30px;height:30px;border-radius:10px;background:var(--blue);display:grid;place-items:center;font-style:normal;font-size:15px;color:#fff}
+.top .right{display:flex;align-items:center;gap:6px}
+.top nav{display:flex;gap:4px}
+.top nav a{text-decoration:none;padding:8px 14px;border-radius:999px;font-weight:500;font-size:15px;color:var(--band-muted)}
+.top nav a:hover{background:rgba(255,255,255,.08);color:#fff}
+.theme{margin-left:8px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.1);color:#fff;cursor:pointer;display:grid;place-items:center}
+.theme:hover{background:rgba(255,255,255,.18)}
+.theme svg{width:18px;height:18px}
+.theme .sun{display:none}
+:root[data-theme="dark"] .theme .sun{display:block}
+:root[data-theme="dark"] .theme .moon{display:none}
+
+.hero{padding:72px 0 56px}
+.hero .hello{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 8px;border-radius:999px;background:rgba(255,255,255,.08);font-size:14px;color:var(--band-muted);margin-bottom:26px}
+.hero .hello b{width:8px;height:8px;border-radius:50%;background:#4ADE80;box-shadow:0 0 0 4px rgba(74,222,128,.18);margin-left:6px}
+.hero h1{font-size:clamp(44px,7.4vw,92px);font-weight:700;line-height:1;max-width:13ch}
+.hero h1 span{color:var(--blue)}
+:root:not([data-theme="dark"]) .hero h1 span{color:#7C8CFF}
+.hero p{font-size:clamp(18px,2vw,21px);line-height:1.5;color:var(--band-muted);max-width:52ch;margin:24px 0 32px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:32px 0 40px;border-top:1px solid var(--band-line)}
+.stats .n{font-family:"Bricolage Grotesque";font-weight:700;font-size:36px;line-height:1}
+.stats .l{color:var(--band-muted);font-size:14px;margin-top:6px}
+
+/* sections */
+section{padding:96px 0 0}
+.sh{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:32px}
+.sh h2{font-size:clamp(34px,4.6vw,52px);font-weight:700;line-height:1.05;margin-top:8px}
+.sh p{margin:0;max-width:42ch;color:var(--muted)}
+.jump{display:flex;gap:8px;flex-wrap:wrap;margin:-8px 0 32px}
+.jump a{text-decoration:none;padding:8px 16px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-weight:600;font-size:14px}
+.jump a:hover{border-color:var(--blue);color:var(--blue-text)}
+
+/* project cards */
+.case{display:grid;grid-template-columns:5fr 6fr;gap:40px;background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:40px;margin-bottom:24px;box-shadow:var(--shadow);scroll-margin-top:24px}
+.case .kind{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.case .kind .pill.b{background:var(--blue-soft);color:var(--blue-text)}
+.case h3{font-size:clamp(30px,3.4vw,42px);font-weight:700;line-height:1.05}
+.case .what{font-size:18px;margin:14px 0 22px;color:var(--ink)}
+.facts{list-style:none;margin:0 0 24px;padding:0;display:grid;gap:12px}
+.facts li{display:grid;grid-template-columns:24px 1fr;gap:8px;font-size:15px;color:var(--muted)}
+.facts li::before{content:"";width:20px;height:20px;border-radius:50%;margin-top:2px;background:var(--blue-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M6 10.5l2.5 2.5L14 7.5' fill='none' stroke='%232340FF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/20px no-repeat}
+.facts b{color:var(--ink);font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.shots{display:grid;gap:18px;align-content:start}
+.shot{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--bg)}
+.shot img{display:block;width:100%;height:auto}
+.shot figcaption{font-size:13px;color:var(--muted);padding:10px 14px;background:var(--surface);border-top:1px solid var(--line)}
+.shot.is-phone{max-width:290px;border-radius:28px}
+
+/* Duo illustration */
+.sets{background:#0E1525;color:#E8ECF4;border-radius:28px;padding:22px;max-width:320px;box-shadow:var(--shadow)}
+.sets h4{font-size:19px;font-weight:700;margin-bottom:12px;display:flex;justify-content:space-between;align-items:baseline}
+.sets h4 small{font-family:Figtree;font-weight:500;font-size:12px;color:#8A93A8}
+.sets .r{display:grid;grid-template-columns:28px 1fr 1fr;padding:10px 0;border-top:1px solid #222B3D;font-variant-numeric:tabular-nums;font-size:15px}
+.sets .g{color:#6F788C}
+.sets .w{color:#8FA0FF;font-weight:600}
+.sets .n{font-size:12px;color:#8A93A8;margin-top:10px}
+
+/* services */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px;display:flex;flex-direction:column;box-shadow:var(--shadow)}
+.card.hot{border:2px solid var(--blue)}
+.card .top-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.card h3{font-size:22px;font-weight:700}
+.price{font-family:"Bricolage Grotesque";font-weight:700;font-size:46px;letter-spacing:-.03em;line-height:1;margin:6px 0 4px}
+.price small{font-family:Figtree;font-size:15px;font-weight:500;color:var(--muted);letter-spacing:0}
+.card .dur{font-size:14px;color:var(--muted);margin-bottom:16px}
+.card p{margin:0 0 18px;color:var(--muted)}
+.card ul{list-style:none;margin:auto 0 0;padding:16px 0 0;border-top:1px solid var(--line);display:grid;gap:8px;font-size:15px}
+.card li{display:flex;gap:10px}
+.card li::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:var(--blue);margin-top:9px}
+.note{color:var(--muted);font-size:14px;margin:16px 4px 0}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px}
+.step .k{width:34px;height:34px;border-radius:50%;background:var(--blue-soft);color:var(--blue-text);display:grid;place-items:center;font-weight:700;font-size:14px;margin-bottom:14px}
+.step h4{font-size:18px;font-weight:700;margin-bottom:4px}
+.step p{margin:0;color:var(--muted);font-size:15px}
+
+/* about */
+.about{display:grid;grid-template-columns:7fr 5fr;gap:20px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px;box-shadow:var(--shadow)}
+.xp{list-style:none;margin:0;padding:0}
+.xp li{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:14px 0;border-top:1px solid var(--line)}
+.xp li:first-child{border-top:0;padding-top:0}
+.xp .y{color:var(--muted);font-size:14px;padding-top:2px}
+.xp .r{font-weight:600}
+.xp .d{color:var(--muted);font-size:15px;margin-top:2px}
+.panel h4{font-size:18px;font-weight:700;margin-bottom:14px}
+.panel .tags{margin-bottom:24px}
+.certs{display:grid;gap:10px}
+.certs div{display:flex;gap:12px;align-items:center;font-weight:500;font-size:15px}
+.certs i{flex:none;width:34px;height:34px;border-radius:10px;background:var(--blue-soft);color:var(--blue-text);display:grid;place-items:center;font-style:normal;font-weight:700;font-size:12px}
+
+/* contact */
+.contact{margin:96px 0 0;background:var(--band);color:var(--band-ink);border-radius:32px;padding:64px 56px;display:grid;grid-template-columns:7fr 5fr;gap:40px;align-items:end}
+.contact h2{font-size:clamp(36px,5vw,60px);font-weight:700;line-height:1.02}
+.contact p{color:var(--band-muted);margin:18px 0 0;font-size:18px;max-width:42ch}
+.contact .links{display:flex;flex-direction:column;gap:12px;align-items:stretch}
+.contact .btn{justify-content:space-between}
+footer{display:flex;justify-content:space-between;padding:36px 4px 40px;color:var(--muted);font-size:14px}
+
+@media (max-width:920px){
+  .top nav{display:none}
+  .stats{grid-template-columns:1fr 1fr;row-gap:28px}
+  .case{grid-template-columns:1fr;padding:28px;gap:28px}
+  .cards{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .about{grid-template-columns:1fr}
+  .contact{grid-template-columns:1fr;padding:44px 32px}
+}
+@media (max-width:520px){
+  .wrap{padding:0 16px}
+  .band{border-radius:0 0 24px 24px}
+  .hero{padding:48px 0 40px}
+  .stats .n{font-size:26px}
+  .case{padding:22px;border-radius:22px}
+  .steps{grid-template-columns:1fr}
+  .xp li{grid-template-columns:1fr;gap:2px}
+  .contact{padding:36px 22px;border-radius:24px}
+  .btn{justify-content:center}
+  .hero .cta .btn{flex:1 1 100%}
+  section{padding-top:72px}
+  footer{flex-direction:column;gap:4px}
+}
+</style>
+</head>
+<body>
+
+<div class="band">
+  <div class="wrap">
+    <header class="top">
+      <span class="me"><i>M</i>Mohammed Mimouni</span>
+      <div class="right">
+        <nav>
+          <a href="#work">Work</a>
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <button class="theme" id="theme" type="button" aria-pressed="false" aria-label="Switch to dark mode">
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="hero">
+      <div class="hello"><b></b>Available for new projects</div>
+      <h1>Full-stack &amp; mobile engineer<span>.</span></h1>
+      <p>I build complete web and mobile apps: the backend, the interface, payments, emails and deployment. You get a working product you own, not a prototype.</p>
+      <div class="cta">
+        <a class="btn primary" href="#contact">Start a project →</a>
+        <a class="btn ghost" href="#work">See my work</a>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div><div class="n">4</div><div class="l">products built end to end</div></div>
+      <div><div class="n">2022</div><div class="l">shipping software since</div></div>
+      <div><div class="n">EN · FR · AR</div><div class="l">languages I work in</div></div>
+      <div><div class="n">Morocco</div><div class="l">working remotely, worldwide</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<section id="work">
+  <div class="sh">
+    <div><div class="eyebrow">Work</div><h2>Selected projects</h2></div>
+    <p>Four products I designed and built end to end, each one solving a real problem.</p>
+  </div>
+  <div class="jump">
+    <a href="#firmament">Firmament</a><a href="#deleveryno">Deleveryno</a><a href="#trustcairn">Trust Cairn</a><a href="#duo">Duo</a>
+  </div>
+
+  <article class="case" id="firmament">
+    <div>
+      <div class="kind"><span class="pill b">Booking &amp; payments</span><span class="pill">Canadian immigration firm</span></div>
+      <h3>Firmament</h3>
+      <p class="what">Clients anywhere in the world book and pay for a consultation with a Montreal consultant, without anyone doing time-zone maths.</p>
+      <ul class="facts">
+        <li><span><b>Time-zone aware booking.</b> Slots show in the visitor's own time zone; the consultant's calendar stays in Montreal time.</span></li>
+        <li><span><b>Two currencies.</b> Stripe checkout in CAD or MAD, priced by session length.</span></li>
+        <li><span><b>Admin dashboard</b> to block days or hours, manage appointments and review uploaded documents.</span></li>
+        <li><span><b>Reminder emails</b> in English and French, sent automatically before each appointment.</span></li>
+        <li><span><b>No double bookings</b>, even when two people pick the same slot at the same moment.</span></li>
+      </ul>
+      <div class="tags"><span class="pill">Spring Boot 3</span><span class="pill">Java 17</span><span class="pill">React 19</span><span class="pill">Tailwind</span><span class="pill">PostgreSQL</span><span class="pill">Stripe</span><span class="pill">Cloudinary</span><span class="pill">Docker</span></div>
+    </div>
+    <div class="shots" id="shots-firmament"></div>
+  </article>
+
+  <article class="case" id="deleveryno">
+    <div>
+      <div class="kind"><span class="pill b">Delivery &amp; logistics</span><span class="pill">Moroccan e-commerce</span></div>
+      <h3>Deleveryno</h3>
+      <p class="what">A cash-on-delivery platform that connects online sellers, delivery drivers and an operations team in one place.</p>
+      <ul class="facts">
+        <li><span><b>Three roles, one app:</b> sellers create orders, admins assign drivers, drivers update deliveries from their phone.</span></li>
+        <li><span><b>The real delivery lifecycle:</b> pending, assigned, in transit, delivered, plus no answer, postponed and cancelled.</span></li>
+        <li><span><b>Seller stock</b> with admin approval, and built-in messaging for the team.</span></li>
+        <li><span><b>Made for drivers' phones:</b> one tap to call the customer or open the address in Google Maps.</span></li>
+        <li><span><b>Arabic, French and English</b> interface, with right-to-left layout for Arabic.</span></li>
+      </ul>
+      <div class="tags"><span class="pill">Django REST</span><span class="pill">React 19</span><span class="pill">Material UI</span><span class="pill">TanStack Query</span><span class="pill">i18next</span><span class="pill">Token auth</span></div>
+    </div>
+    <div class="shots" id="shots-deleveryno"></div>
+  </article>
+
+  <article class="case" id="trustcairn">
+    <div>
+      <div class="kind"><span class="pill b">SaaS</span><span class="pill">Trust accounting</span><span class="pill">Launching</span></div>
+      <h3>Trust Cairn</h3>
+      <p class="what">Immigration consultants must reconcile the money they hold for clients every month. Trust Cairn does it from their bank's own emails.</p>
+      <ul class="facts">
+        <li><span><b>Reads bank notifications</b> (Interac e-Transfers, deposits) forwarded from Outlook or Gmail, and turns them into entries waiting for approval.</span></li>
+        <li><span><b>Per-client balances</b> across several bank accounts and currencies, with advances tracked until repaid.</span></li>
+        <li><span><b>Monthly reconciliation reports</b> in PDF, Excel and CSV, ready for a regulator's inspection.</span></li>
+        <li><span><b>Full audit trail:</b> every change records who made it, with before and after values.</span></li>
+        <li><span><b>Multi-tenant</b>, background jobs, 165 automated tests.</span></li>
+      </ul>
+      <div class="tags"><span class="pill">Django 5</span><span class="pill">DRF</span><span class="pill">Celery</span><span class="pill">Redis</span><span class="pill">PostgreSQL</span><span class="pill">React 19</span><span class="pill">TypeScript</span><span class="pill">Docker</span></div>
+    </div>
+    <div class="shots" id="shots-trustcairn"></div>
+  </article>
+
+  <article class="case" id="duo">
+    <div>
+      <div class="kind"><span class="pill b">Mobile app</span><span class="pill">Android</span></div>
+      <h3>Duo</h3>
+      <p class="what">An offline gym app for two training partners on the same program, one cutting and one bulking.</p>
+      <ul class="facts">
+        <li><span><b>Last session pre-filled</b> on every set; beat it and the row lights up.</span></li>
+        <li><span><b>Progression suggestions</b> and stall detection from your own history.</span></li>
+        <li><span><b>Barcode food scanning</b> through Open Food Facts, cached to work offline.</span></li>
+        <li><span><b>A day plan from your wake-up time:</b> meals sized to your protein goal, gym reminder, caffeine cut-off, bedtime.</span></li>
+      </ul>
+      <div class="tags"><span class="pill">Flutter</span><span class="pill">Dart</span><span class="pill">Riverpod</span><span class="pill">Drift / SQLite</span><span class="pill">Notifications</span></div>
+    </div>
+    <div class="shots">
+      <div class="sets" aria-label="Illustration of Duo's workout screen">
+        <h4>Bench press <small>kg × reps</small></h4>
+        <div class="r"><span>1</span><span class="g">80 × 8</span><span class="w">82.5 × 8</span></div>
+        <div class="r"><span>2</span><span class="g">80 × 7</span><span class="w">80 × 8</span></div>
+        <div class="r"><span>3</span><span class="g">80 × 6</span><span>80 × 6</span></div>
+        <div class="n">Grey: last week · Blue: beaten</div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section id="services">
+  <div class="sh">
+    <div><div class="eyebrow">Services</div><h2>What I can build for you</h2></div>
+    <p>Fixed prices agreed before I start. You own the code and everything it runs on.</p>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="top-row"><h3>Fixes &amp; features</h3></div>
+      <div class="price">$15<small> / hour</small></div>
+      <div class="dur">Start within days</div>
+      <p>You already have a Django, Spring, React or Flutter app and need bugs fixed or features added.</p>
+      <ul><li>Review of the existing code</li><li>Estimate before any work</li><li>Tests with every change</li></ul>
+    </div>
+    <div class="card hot">
+      <div class="top-row"><h3>Spreadsheet to app</h3></div>
+      <div class="price"><small>from </small>$150</div>
+      <div class="dur">1–2 weeks</div>
+      <p>Your business runs on an Excel file that keeps breaking. I turn it into a web app your team can use at the same time.</p>
+      <ul><li>Logins for your team</li><li>Your data imported</li><li>Exports back to Excel</li></ul>
+    </div>
+    <div class="card">
+      <div class="top-row"><h3>MVP web or mobile app</h3></div>
+      <div class="price"><small>from </small>$500</div>
+      <div class="dur">3–5 weeks</div>
+      <p>A first version of your product that real users can sign up to and pay for.</p>
+      <ul><li>Backend, web app and/or Flutter app</li><li>Payments, emails, admin panel</li><li>Deployed and handed over</li></ul>
+    </div>
+  </div>
+  <p class="note">Final price depends on scope; you get a written quote before anything starts.</p>
+
+  <div class="steps">
+    <div class="step"><div class="k">1</div><h4>Short call</h4><p>What you need, and what it must do on day one.</p></div>
+    <div class="step"><div class="k">2</div><h4>Fixed quote</h4><p>Written scope, price and date. 50% to start.</p></div>
+    <div class="step"><div class="k">3</div><h4>Weekly demos</h4><p>Working software every week, not status reports.</p></div>
+    <div class="step"><div class="k">4</div><h4>Hand-over</h4><p>Deployed, documented, and the code is yours.</p></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="sh">
+    <div><div class="eyebrow">About</div><h2>Who you'd be working with</h2></div>
+    <p>Computer engineer (EMSI). Mobile developer by day, building my own products the rest of the time.</p>
+  </div>
+  <div class="about">
+    <div class="panel">
+      <ul class="xp">
+        <li><span class="y">2025 — now</span><div><div class="r">Mobile developer · Smatch Digital</div><div class="d">Flutter apps for warehouse handheld scanners: inventory, picking and stock lookup, connected to warehouse management systems.</div></div></li>
+        <li><span class="y">2024</span><div><div class="r">Software engineering intern · Al Barid Bank</div></div></li>
+        <li><span class="y">2023</span><div><div class="r">Development intern · OCP Group</div></div></li>
+        <li><span class="y">2022</span><div><div class="r">Full-stack developer · Info Academie</div></div></li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h4>Tools I use</h4>
+      <div class="tags">
+        <span class="pill">Python</span><span class="pill">Django</span><span class="pill">Java</span><span class="pill">Spring Boot</span><span class="pill">TypeScript</span><span class="pill">React</span><span class="pill">Angular</span><span class="pill">Dart</span><span class="pill">Flutter</span><span class="pill">.NET</span><span class="pill">PostgreSQL</span><span class="pill">MySQL</span><span class="pill">MongoDB</span><span class="pill">Docker</span><span class="pill">AWS</span><span class="pill">CI/CD</span>
+      </div>
+      <h4>Certifications</h4>
+      <div class="certs">
+        <div><i>AWS</i>AWS Certified Cloud Practitioner</div>
+        <div><i>PSM</i>Professional Scrum Master I</div>
+        <div><i>CSM</i>Certified Scrum Master</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div>
+    <h2>Have an app in mind, or a spreadsheet you've outgrown?</h2>
+    <p>Send a few lines about it. I reply within a day with questions or a rough price.</p>
+  </div>
+  <div class="links">
+    <a class="btn light" href="mailto:medmimouni98@gmail.com">medmimouni98@gmail.com <span>→</span></a>
+    <a class="btn ghost" href="https://github.com/Eosst">github.com/Eosst <span>↗</span></a>
+  </div>
+</section>
+
+<footer><span>© 2026 Mohammed Mimouni</span><span>Designed and built by me</span></footer>
+</div>
+
+<script>
+// Theme toggle: light by default, choice remembered in this browser when storage is available.
+const themeBtn = document.getElementById('theme');
+function showTheme() {
+  const dark = document.documentElement.dataset.theme === 'dark';
+  themeBtn.setAttribute('aria-pressed', String(dark));
+  themeBtn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+}
+themeBtn.addEventListener('click', () => {
+  const dark = document.documentElement.dataset.theme !== 'dark';
+  if (dark) document.documentElement.dataset.theme = 'dark'; else delete document.documentElement.dataset.theme;
+  try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
+  showTheme();
+});
+showTheme();
+
+// Screenshots per project: [file, caption, kind]. A file that fails to load is dropped.
+const SHOTS = {
+  firmament: [
+    ['img/firmament-booking.png', 'Booking: every slot shows in the visitor\'s own time zone (here, Toronto).'],
+    ['img/firmament-home.png', 'Home page of the firm\'s site.']
+  ],
+  deleveryno: [
+    ['img/deleveryno-orders.png', 'Operations view: every order with its seller, driver and status.'],
+    ['img/deleveryno-driver.png', 'Driver view on a phone: call the customer, open the address, update the delivery.', 'phone']
+  ],
+  trustcairn: [
+    ['img/trustcairn-waiting.png', 'Bank emails turned into operations, waiting for the consultant to confirm.'],
+    ['img/trustcairn-clients.png', 'Money held in trust for each client, across currencies.']
+  ]
+};
+for (const [key, list] of Object.entries(SHOTS)) {
+  const box = document.getElementById('shots-' + key);
+  for (const [src, cap, kind] of list) {
+    const f = document.createElement('figure');
+    f.className = 'shot' + (kind === 'phone' ? ' is-phone' : '');
+    const img = document.createElement('img');
+    img.loading = 'lazy'; img.src = src; img.alt = cap;
+    img.onerror = () => f.remove();
+    const c = document.createElement('figcaption'); c.textContent = cap;
+    f.append(img, c); box.appendChild(f);
+  }
+}
+</script>
+</body>
+</html>
